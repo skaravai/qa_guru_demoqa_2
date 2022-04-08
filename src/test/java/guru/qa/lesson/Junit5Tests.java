@@ -1,4 +1,4 @@
-package guru.qa;
+package guru.qa.lesson;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
