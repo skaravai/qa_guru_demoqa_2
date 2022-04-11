@@ -10,12 +10,14 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
+import static utils.RandomUtils.getRandomEmail;
+import static utils.RandomUtils.getRandomString;
 
 public class RegistrationFormWithRandomUtilsTests {
 
-    String firstName = "Sergei",
-            lastName = "Karavai",
-            email = "testemail@gmail.com",
+    String firstName = getRandomString(10),
+            lastName = getRandomString(10),
+            email = getRandomEmail(),
             mobileNumber = "1232020327",
             subject = "English",
             currentAddress = "Lenina 50";
