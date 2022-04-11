@@ -14,7 +14,7 @@ public class RegistrationFormTests {
 
     @BeforeAll
     static void setUp() {
-        Configuration.holdBrowserOpen = true;
+    //    Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1250";
     }
@@ -62,13 +62,8 @@ public class RegistrationFormTests {
 
         //Assertions
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-//        $(".table-responsive").shouldHave(text("Sergei"), text("Karavai"), text("testemail@gmail.com ") );
+        $(".table-responsive").shouldHave(text("Sergei"), text("Karavai"), text("testemail@gmail.com ") );
         $(".table-responsive").$(byText("Student Name")).parent().shouldHave( text("Sergei Karavai"));
-//         $("#firstName").shouldHave(text(name));
-//        $("#last_name").shouldHave(text(last_name));
-//        $("#lastName").setValue(last_name);
-
 
     }
-
 }
