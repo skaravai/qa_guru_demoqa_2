@@ -65,7 +65,5 @@ public class RegistrationFormTests {
         $(".table-responsive").shouldHave(text("Sergei"), text("Karavai"), text("testemail@gmail.com "));
         $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Sergei Karavai"));
 
-
-
     }
 }

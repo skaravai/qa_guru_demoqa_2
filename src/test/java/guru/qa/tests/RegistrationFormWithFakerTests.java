@@ -25,7 +25,6 @@ public class RegistrationFormWithFakerTests {
             currentAddress = faker.address().fullAddress(),
             subject = "English";
 
-
     String expectedFullName = format("%s %s", firstName, lastName);
     File file = new File("src/test/resources/img/image.png");
 
@@ -43,7 +42,6 @@ public class RegistrationFormWithFakerTests {
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
-
 
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
