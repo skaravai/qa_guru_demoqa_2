@@ -62,8 +62,10 @@ public class RegistrationFormTests {
 
         //Assertions
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Sergei"), text("Karavai"), text("testemail@gmail.com ") );
-        $(".table-responsive").$(byText("Student Name")).parent().shouldHave( text("Sergei Karavai"));
+        $(".table-responsive").shouldHave(text("Sergei"), text("Karavai"), text("testemail@gmail.com "));
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Sergei Karavai"));
+
+
 
     }
 }
