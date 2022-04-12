@@ -9,8 +9,21 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static java.lang.String.format;
+import static utils.RandomUtils.getRandomEmail;
+import static utils.RandomUtils.getRandomString;
 
-public class RegistrationFormTests {
+public class RegistrationFormWithRandomUtilsTests {
+
+    String firstName = getRandomString(10),
+            lastName = getRandomString(10),
+            email = getRandomEmail(),
+            mobileNumber = "1232020327",
+            subject = "English",
+            currentAddress = "Lenina 50";
+
+    String expectedFullName = format("%s %s", firstName, lastName);
+    File file = new File("src/test/resources/img/image.png");
 
     @BeforeAll
     static void setUp() {
@@ -21,13 +34,6 @@ public class RegistrationFormTests {
 
     @Test
     void fillFormTest() {
-        String name = "Sergei";
-        String last_name = "Karavai";
-        String email = "testemail@gmail.com";
-        String mobileNumber = "1232020327";
-        String subject = "English";
-        String currentAddress = "Lenina 50";
-        File file = new File("src/test/resources/img/image.png");
 
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
@@ -35,8 +41,8 @@ public class RegistrationFormTests {
         executeJavaScript("$('#fixedban').remove()");
 
 
-        $("#firstName").setValue(name);
-        $("#lastName").setValue(last_name);
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
         $("#userEmail").setValue(email);
         $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue(mobileNumber);
@@ -62,10 +68,8 @@ public class RegistrationFormTests {
 
         //Assertions
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Sergei"), text("Karavai"), text("testemail@gmail.com "));
-        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Sergei Karavai"));
-
-
+        $(".table-responsive").shouldHave(text(expectedFullName), text(email) );
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave( text("Sergei Karavai"));
 
     }
 }
