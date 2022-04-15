@@ -13,6 +13,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormWithPageObjectsTests {
 
+    RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+
     @BeforeAll
     static void setUp() {
     //    Configuration.holdBrowserOpen = true;
@@ -23,7 +25,7 @@ public class RegistrationFormWithPageObjectsTests {
     @Test
     void fillFormTest() {
 
-        RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+
         File file = new File("src/test/resources/img/image.png");
 
         registrationFormPage.openPage();
