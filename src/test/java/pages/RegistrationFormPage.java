@@ -54,8 +54,8 @@ public class RegistrationFormPage {
 
     public RegistrationFormPage setDateOfBirth (String month, String year, String day) {
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("October");
-        $(".react-datepicker__year-select").selectOption("1993");
+        $(".react-datepicker__month-select").selectOption(month);
+        $(".react-datepicker__year-select").selectOption(year);
         $(".react-datepicker__day--0" + day  + ":not(.react-datepicker__day--outside-month)").click();
 
         return this;
