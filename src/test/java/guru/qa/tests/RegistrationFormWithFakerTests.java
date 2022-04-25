@@ -11,19 +11,21 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
-import static utils.RandomUtils.getRandomEmail;
-import static utils.RandomUtils.getRandomString;
 
 public class RegistrationFormWithFakerTests {
 
-    Faker faker = new  Faker();
+    Faker faker = new Faker();
 
     String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             email = faker.internet().emailAddress(),
+            gender = "Male",
             mobileNumber = faker.number().digits(10),
             currentAddress = faker.address().fullAddress(),
-            subject = "English";
+            month = "October",
+            year = "1993",
+            subject = "English",
+            hobbie = "Reading";
 
     String expectedFullName = format("%s %s", firstName, lastName);
     File file = new File("src/test/resources/img/image.png");
@@ -45,18 +47,18 @@ public class RegistrationFormWithFakerTests {
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(email);
-        $("#genterWrapper").$(byText("Male")).click();
+        $("#genterWrapper").$(byText(gender)).click();
         $("#userNumber").setValue(mobileNumber);
 
         // setting date of birth
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("October");
-        $(".react-datepicker__year-select").selectOption("1993");
+        $(".react-datepicker__month-select").selectOption(month);
+        $(".react-datepicker__year-select").selectOption(year);
         $(".react-datepicker__day--028:not(.react-datepicker__day--outside-month)").click();
 
 
         $("#subjectsInput").setValue(subject).pressEnter();
-        $("#hobbiesWrapper").$(byText("Reading")).click();
+        $("#hobbiesWrapper").$(byText(hobbie)).click();
         //$("#hobbies-checkbox-2").parent().click();
         $("#uploadPicture").uploadFile(file);
         $("#currentAddress").setValue(currentAddress);

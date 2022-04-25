@@ -1,15 +1,12 @@
    package guru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
 import java.io.File;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormWithPageObjectsTests {
 
@@ -25,27 +22,38 @@ public class RegistrationFormWithPageObjectsTests {
     @Test
     void fillFormTest() {
 
+        Faker faker = new Faker();
         File file = new File("src/test/resources/img/image.png");
 
+        String firstName = faker.name().firstName(),
+                lastName = faker.name().lastName(),
+                email = faker.internet().emailAddress(),
+                gender = "Male",
+                mobileNumber = faker.number().digits(10),
+                currentAddress = faker.address().fullAddress(),
+                month = "October",
+                year = "1993",
+                subject = "English";
+
         registrationFormPage.openPage()
-                .setFirstName("Sergei")
-                .setLastName("Karavai")
-                .setEmail("testemail@gmail.com")
-                .setGender("Male")
-                .setPhone("1232020327")
-                .setDateOfBirth("October", "1993", "28")
-                .setSubject("English")
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setGender(gender)
+                .setPhone(mobileNumber)
+                .setDateOfBirth(month, year, "28")
+                .setSubject(subject)
                 .setHobbie()
                 .uploadFile(file)
-                .setCurrentAddress("Lenina 50")
+                .setCurrentAddress(currentAddress)
                 .setStateAndCity("NCR", "Delhi")
                 .clickSubmit();
 
         //Assertions
         registrationFormPage.checkFormOpened()
-                .checkResult("Student Name", "Sergei Karavai")
-                .checkResult("Student Email", "testemail@gmail.com")
-                .checkResult("Gender", "Male");
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", email)
+                .checkResult("Gender", gender);
 
     }
 }
